@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5f5f5;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.alert-container {
+  position: absolute;
+  z-index: 1000;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  min-width: 350px;
+  /* background: red; */
+}
+
+.alert {
+  margin: 8px 0 !important;
+  height: 60px !important;
+}
+
+.form {
+  box-shadow: 0px 0px 10px #333;
+  border-radius: 5px;
+  padding: 30px;
+  position: absolute;
+  width: 75%;
+  min-width: 350px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: form-animation 0.3s ease-in forwards;
+}
+
+.user-container {
+  background: #fff;
+  padding: 20px 25px;
+  margin: 20px 0;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px #cbcbcb;
+}
+
+.user-container form {
+  margin: 30px 0;
+}
+
+@keyframes form-animation {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 50%;
+  }
+}
