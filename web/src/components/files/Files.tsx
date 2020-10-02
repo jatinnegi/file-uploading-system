@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { AppState } from "../../store";
 import { getAllFiles, deleteFile } from "../../store/files/FilesActions";
@@ -16,6 +16,8 @@ const Files: React.FC<Props> = ({ files, userId, getAllFiles, deleteFile }) => {
   useEffect(() => {
     getAllFiles();
   }, [getAllFiles]);
+
+  const [searchInput, setSearchInput] = useState<string>("");
 
   const formatDate = (date: Date) => {
     const uploadDate = new Date(date);
@@ -83,9 +85,20 @@ const Files: React.FC<Props> = ({ files, userId, getAllFiles, deleteFile }) => {
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  };
+
   return (
     <div className="user-container">
       <h1>All Files</h1>
+      <input
+        type="text"
+        className="form-control mb-4"
+        placeholder="Search Files"
+        value={searchInput}
+        onChange={handleChange}
+      />
       <table className="table table-bordered">
         <thead className="thead-dark">
           <tr>
@@ -98,7 +111,18 @@ const Files: React.FC<Props> = ({ files, userId, getAllFiles, deleteFile }) => {
         <tbody>
           {files.length > 0 ? (
             files.map((file: File) => (
-              <tr key={file.id}>
+              <tr
+                key={file.id}
+                className={
+                  searchInput.length
+                    ? !file.title
+                        .toLowerCase()
+                        .includes(searchInput.toLowerCase())
+                      ? "display-none"
+                      : ""
+                    : ""
+                }
+              >
                 <td>{file.title}</td>
                 <td>
                   <button
